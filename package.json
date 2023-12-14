@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "publish-patch": "pnpm version patch && git push --follow-tags"
   },
   "devDependencies": {
     "typescript": "^5.2.2",
