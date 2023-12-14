@@ -24,11 +24,14 @@ jobs:
         run: echo ${{env.PACKAGE_VERSION}}
       - name: Zip folder
         run: sudo apt install zip unzip
+      - name: move to release folder
+#        run: cd build # <-- NPM
+        run: cd dist # <-- PNPM/VITE
       - name: Pack folder
-        run: zip -r Build_${{env.PACKAGE_VERSION}}.zip dist
+        run: zip -r Build_v${{env.PACKAGE_VERSION}}.zip .
       - name: "Upload Artifact"
         uses: actions/upload-artifact@v3
         with:
-          name: Build_${{env.PACKAGE_VERSION}}
+          name: Build_v${{env.PACKAGE_VERSION}}
 #          path: build
-          path: Build_${{env.PACKAGE_VERSION}}.zip # <-- PNPM/VITE
+          path: Build_v${{env.PACKAGE_VERSION}}.zip # <-- PNPM/VITE
