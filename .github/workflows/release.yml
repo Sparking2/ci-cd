@@ -17,7 +17,7 @@ jobs:
 #      - run: npm ci
       - run: pnpm i --frozen-lockfile
 #      - run: npm run build --if-present
-      - run: pnpm run build --if-present
+      - run: pnpm run build
       - name: Set ENV
         run: echo "PACKAGE_VERSION=$(npm pkg get version|sed 's/"//g')" >> $GITHUB_ENV
       - name: Test Version
