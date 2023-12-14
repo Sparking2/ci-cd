@@ -22,14 +22,22 @@ jobs:
         run: echo "PACKAGE_VERSION=$(npm pkg get version|sed 's/"//g')" >> $GITHUB_ENV
       - name: Test Version
         run: echo ${{env.PACKAGE_VERSION}}
-      - name: Zip folder
-        run: sudo apt install zip unzip
       - name: move to release folder
 #        run: cd build # <-- NPM
         run: |        # <-- pnpm/vite
           cd dist 
           pwd
           ls
+      - name: Pack folder
+        run: |
+          sudo apt install zip unzip
+          zip -r Build_v${{env.PACKAGE_VERSION}}.zip
+      - name: "Upload Artifact"
+        uses: actions/upload-artifact@v3
+        with:
+          name: Build_v${{env.PACKAGE_VERSION}}
+#          path: build
+          path: Build_v${{env.PACKAGE_VERSION}}.zip # <-- PNPM/VITE
 #      - name: Pack folder
 #        run: zip -r Build_v${{env.PACKAGE_VERSION}}.zip .
 #      - name: "Upload Artifact"
