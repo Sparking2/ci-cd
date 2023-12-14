@@ -1,5 +1,8 @@
 name: Build
-on: [ push ]
+on:
+  push:
+    branches:
+      - dev
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,12 +15,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
-          cache: 'pnpm' # <-- PNPM
+          cache: 'pnpm' # <-- pnpm
 #          cache: 'npm'
 #      - run: npm ci
-      - run: pnpm i --frozen-lockfile # <-- PNPM
+      - run: pnpm i --frozen-lockfile # <-- pnpm
 #      - run: npm run build --if-present
-      - run: pnpm run build # <-- PNPM
+      - run: pnpm run build # <-- pnpm
       - name: Set ENV
         run: echo "PACKAGE_VERSION=$(npm pkg get version|sed 's/"//g')" >> $GITHUB_ENV
       - name: Test Version
@@ -41,17 +44,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Build_v${{env.PACKAGE_VERSION}}
-#          path: build
-          path: dist/Build_v${{env.PACKAGE_VERSION}}.zip # <-- PNPM/VITE
-      - name: "create release"
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: dist/Build_v${{env.PACKAGE_VERSION}}.zip
-#      - name: Pack folder
-#        run: zip -r Build_v${{env.PACKAGE_VERSION}}.zip .
-#      - name: "Upload Artifact"
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: Build_v${{env.PACKAGE_VERSION}}
-##          path: build
-#          path: Build_v${{env.PACKAGE_VERSION}}.zip # <-- PNPM/VITE
+#          path: build # <-- npm and
+          path: dist # <-- pnpm & vite
