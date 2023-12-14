@@ -43,6 +43,10 @@ jobs:
           name: Build_v${{env.PACKAGE_VERSION}}
 #          path: build
           path: dist/Build_v${{env.PACKAGE_VERSION}}.zip # <-- PNPM/VITE
+      - name: "create release"
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: dist/Build_v${{env.PACKAGE_VERSION}}.zip
 #      - name: Pack folder
 #        run: zip -r Build_v${{env.PACKAGE_VERSION}}.zip .
 #      - name: "Upload Artifact"
