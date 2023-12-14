@@ -26,9 +26,10 @@ jobs:
         run: sudo apt install zip unzip
       - name: move to release folder
 #        run: cd build # <-- NPM
-        run: cd dist # <-- PNPM/VITE
-      - name: check directory
-        run: pwd
+        run: |        # <-- pnpm/vite
+          cd dist 
+          pwd
+          ls
 #      - name: Pack folder
 #        run: zip -r Build_v${{env.PACKAGE_VERSION}}.zip .
 #      - name: "Upload Artifact"
