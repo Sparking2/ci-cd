@@ -25,7 +25,7 @@ jobs:
       - name: Zip folder
         run: sudo apt install zip unzip
       - name: Pack folder
-        run: zip -r Build_${{env.PACKAGE_VERSION}} dist
+        run: zip -r Build_${{env.PACKAGE_VERSION}}.zip dist
       - name: "Upload Artifact"
         uses: actions/upload-artifact@v3
         with:
