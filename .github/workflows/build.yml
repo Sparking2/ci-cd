@@ -31,7 +31,7 @@ jobs:
       - name: Pack folder
         run: |
           sudo apt install zip unzip
-          zip -r Build_v${{env.PACKAGE_VERSION}}.zip
+          zip -r Build_v${{env.PACKAGE_VERSION}}.zip .
       - name: "Upload Artifact"
         uses: actions/upload-artifact@v3
         with:
