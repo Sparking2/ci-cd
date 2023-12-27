@@ -14,12 +14,14 @@ jobs:
 #      - run: |
 #          touch test.txt
       - run: |
-          touch test.txt
-      - name: "Deploy"
-        uses: milanmk/actions-file-deployer@master
+          mkdir dist
+          touch dist/test.txt
+      - name: "SFTP deploy"
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          remote-protocol: "sftp"
-          remote-host: "64.23.144.200"
-          remote-user: "developer"
-          ssh-private-key: ${{ secrets.SSH_CI_CD }}
-          remote-path: "."
+          username: "developer"
+          server: "64.23.144.200"
+          ssh_private_key: ${{ secrets.SSH_CI_CD }}
+          local_path: './dist/*'
+          remote_path: '.'
+          sftpArgs: '-o ConnectTimeout=5'
