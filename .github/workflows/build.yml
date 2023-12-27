@@ -2,7 +2,8 @@ name: Create Build
 on:
   push:
     branches:
-      - dev    # what branch we want to build
+      - main    # what branch we want to build
+      # - dev
 jobs:
   build:
     runs-on: ubuntu-latest
