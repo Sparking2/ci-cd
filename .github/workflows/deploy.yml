@@ -16,13 +16,11 @@ jobs:
       - run: |
           mkdir dist
           touch dist/test.txt
-      - name: "SFTP deploy"
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      - name: Upload files
+        uses: Dylan700/sftp-upload-action@latest
         with:
-          username: "developer"
           server: "64.23.144.200"
-#          ssh_private_key: ${{ secrets.SSH_CI_CD }}
-          local_path: './dist/*'
-          remote_path: '.'
-          sftpArgs: '-o ConnectTimeout=5'
-      - run: "echo Hello4"
+          username: "developer"
+          key: ${{ secrets.SSH_CI_CD }}
+          uploads: |
+            ./dist => .
