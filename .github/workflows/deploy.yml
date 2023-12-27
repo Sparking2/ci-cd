@@ -25,4 +25,4 @@ jobs:
           local_path: './dist/*'
           remote_path: '.'
           sftpArgs: '-o ConnectTimeout=5'
-      - run: "echo Hello2"
+      - run: "echo Hello3"
