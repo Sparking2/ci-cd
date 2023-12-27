@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-#      - uses: webfactory/ssh-agent@v0.8.0
-#        with:
-#          ssh-private-key: ${{ secrets.SSH_CI_CD }}
+      - uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_CI_CD }}
 #      - run: |
 #          touch test.txt
       - run: |
@@ -21,7 +21,7 @@ jobs:
         with:
           username: "developer"
           server: "64.23.144.200"
-          ssh_private_key: ${{ secrets.SSH_CI_CD }}
+#          ssh_private_key: ${{ secrets.SSH_CI_CD }}
           local_path: './dist/*'
           remote_path: '.'
           sftpArgs: '-o ConnectTimeout=5'
