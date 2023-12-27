@@ -10,3 +10,6 @@ jobs:
       - uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.SSH_CI_CD }}
+      - run: |
+          ssh developer@64.23.144.200
+          exit
