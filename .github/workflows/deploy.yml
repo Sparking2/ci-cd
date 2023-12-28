@@ -23,4 +23,4 @@ jobs:
           username: "developer"
           key: ${{ secrets.SSH_CI_CD }}
           uploads: |
-            ./dist => ./latest_build/$DEST_FOLDER_NAME
+            ./dist => ./latest_build/${{vars.DEST_FOLDER}}
