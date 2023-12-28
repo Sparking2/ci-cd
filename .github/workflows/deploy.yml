@@ -18,17 +18,11 @@ jobs:
           cache: 'pnpm'
       - run: pnpm i --frozen-lockfile
       - run: pnpm run build
-#      - uses: webfactory/ssh-agent@v0.8.0
-#        with:
-#          ssh-private-key: ${{ secrets.SSH_CI_CD }}
-#      - run: |
-#          mkdir dist
-#          touch dist/test.txt
       - name: Upload files
         uses: Dylan700/sftp-upload-action@latest
         with:
-          server: "64.23.144.200"
-          username: "developer"
+          server: ${{ vars.SERVER_IP }}
+          username: ${{ vars.USER }}
           key: ${{ secrets.SSH_CI_CD }}
           uploads: |
             ./dist => ./latest_build/${{vars.DEST_FOLDER}}
