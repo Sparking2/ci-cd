@@ -25,4 +25,4 @@ jobs:
           username: ${{ vars.USER }}
           key: ${{ secrets.SSH_CI_CD }}
           uploads: |
-            ./dist => ./latest_build/${{vars.DEST_FOLDER}}
+            ./dist => /var/www/${{vars.DEST_FOLDER}}/html
